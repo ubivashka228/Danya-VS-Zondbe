@@ -1,0 +1,9 @@
+C:\Users\Roman\Desktop\Игра\Danya VS Zondbe\Danya VS Zondbe\bin\Debug\Danya_VS_Zondbe.exe.config
+C:\Users\Roman\Desktop\Игра\Danya VS Zondbe\Danya VS Zondbe\bin\Debug\Danya_VS_Zondbe.exe
+C:\Users\Roman\Desktop\Игра\Danya VS Zondbe\Danya VS Zondbe\bin\Debug\Danya_VS_Zondbe.pdb
+C:\Users\Roman\Desktop\Игра\Danya VS Zondbe\Danya VS Zondbe\obj\Debug\Danya VS Zondbe.csproj.AssemblyReference.cache
+C:\Users\Roman\Desktop\Игра\Danya VS Zondbe\Danya VS Zondbe\obj\Debug\Danya_VS_Zondbe.Properties.Resources.resources
+C:\Users\Roman\Desktop\Игра\Danya VS Zondbe\Danya VS Zondbe\obj\Debug\Danya VS Zondbe.csproj.GenerateResource.cache
+C:\Users\Roman\Desktop\Игра\Danya VS Zondbe\Danya VS Zondbe\obj\Debug\Danya VS Zondbe.csproj.CoreCompileInputs.cache
+C:\Users\Roman\Desktop\Игра\Danya VS Zondbe\Danya VS Zondbe\obj\Debug\Danya_VS_Zondbe.exe
+C:\Users\Roman\Desktop\Игра\Danya VS Zondbe\Danya VS Zondbe\obj\Debug\Danya_VS_Zondbe.pdb
