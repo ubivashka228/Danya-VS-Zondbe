@@ -22,9 +22,9 @@ namespace Danya_VS_Zondbe
         {
             var recruits = new[]
             {
-                new Zondbe(new MediumZondbeFabric()),
-                new Zondbe(new HighZondbeFabric()),
-                new Zondbe(new ToxicZondbeFabric())
+                new Zondbe(new MediumZondbeFabric(), zondbePosition),
+                new Zondbe(new HighZondbeFabric(), zondbePosition),
+                new Zondbe(new ToxicZondbeFabric(), zondbePosition)
             };
         }
     }
@@ -44,10 +44,10 @@ namespace Danya_VS_Zondbe
         {
             var recruits = new[]
             {
-                new Zondbe(new DarkKnightZondbeFabric()),
-                new Zondbe(new DarkKnightZondbeFabric()),
-                new Zondbe(new LichZondbeFabric()),
-                new Zondbe(new SprinterZondbeFabric())
+                new Zondbe(new DarkKnightZondbeFabric(), zondbePosition),
+                new Zondbe(new DarkKnightZondbeFabric(), zondbePosition),
+                new Zondbe(new LichZondbeFabric(), zondbePosition),
+                new Zondbe(new SprinterZondbeFabric(), zondbePosition)
             };
         }
     }
