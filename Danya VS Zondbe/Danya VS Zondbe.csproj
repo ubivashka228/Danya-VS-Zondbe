@@ -51,6 +51,7 @@
         <Compile Include="Classes\UsefulClasses\Point.cs" />
         <Compile Include="Classes\UsefulClasses\Vector.cs" />
         <Compile Include="Classes\Weapon\Weapon.cs" />
+        <Compile Include="Classes\Weapon\WeaponCharasteristics.cs" />
         <Compile Include="Classes\Zondbe\WalkingStrategy.cs" />
         <Compile Include="Classes\Zondbe\ZondbeCharasteristics.cs" />
         <Compile Include="Classes\Zondbe\ZondbeFabric.cs" />
