@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace Danya_VS_Zondbe
 {
@@ -198,12 +199,12 @@ namespace Danya_VS_Zondbe
 
         public void Cast()
         {
-            _skull.Cast(Position, Player.Position);
+            _skull.Cast(Position, GameModel.PlayerModel.Position);
         }
 
         public Point Move()
         {
-            return _walkingStrategy.Move(Player.Position, Position, Charasteristics.Movement);
+            return _walkingStrategy.Move(GameModel.PlayerModel.Position, Position, Charasteristics.Movement);
         }
         
         public Zondbe(ZondbeFabric zondbeFabric, Point position)

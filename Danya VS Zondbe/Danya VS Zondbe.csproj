@@ -48,7 +48,6 @@
     <ItemGroup>
         <Compile Include="Classes\CommonClasses\Bullet.cs" />
         <Compile Include="Classes\Player\Player.cs" />
-        <Compile Include="Classes\UsefulClasses\Point.cs" />
         <Compile Include="Classes\UsefulClasses\Vector.cs" />
         <Compile Include="Classes\Weapon\Weapon.cs" />
         <Compile Include="Classes\Weapon\WeaponCharasteristics.cs" />
@@ -62,8 +61,13 @@
         <Compile Include="Form1.Designer.cs">
             <DependentUpon>Form1.cs</DependentUpon>
         </Compile>
+        <Compile Include="GameComposition\Controller.cs" />
+        <Compile Include="GameComposition\GameModel.cs" />
         <Compile Include="Program.cs"/>
         <Compile Include="Properties\AssemblyInfo.cs"/>
+        <EmbeddedResource Include="Form1.resx">
+          <DependentUpon>Form1.cs</DependentUpon>
+        </EmbeddedResource>
         <EmbeddedResource Include="Properties\Resources.resx">
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -87,8 +91,16 @@
         <None Include="App.config"/>
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="Images\Player\" />
-      <Folder Include="Images\Zondbe\" />
+      <Content Include="Properties\Resources\ammo_Image.png" />
+      <Content Include="Properties\Resources\dead.png" />
+      <Content Include="Properties\Resources\down.png" />
+      <Content Include="Properties\Resources\left.png" />
+      <Content Include="Properties\Resources\right.png" />
+      <Content Include="Properties\Resources\up.png" />
+      <Content Include="Properties\Resources\zdown.png" />
+      <Content Include="Properties\Resources\zleft.png" />
+      <Content Include="Properties\Resources\zright.png" />
+      <Content Include="Properties\Resources\zup.png" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
 </Project>

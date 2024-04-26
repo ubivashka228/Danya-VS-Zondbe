@@ -11,7 +11,7 @@ namespace Danya_VS_Zondbe
     {
         public override void Cast(Point zondbePosition, Point playerPosition)
         {
-            var direction = new Vector((playerPosition - zondbePosition).X, (playerPosition - zondbePosition).Y);
+            var direction = new Vector((playerPosition.X - zondbePosition.X), (playerPosition.Y - zondbePosition.Y));
             var bullet = new Bullet(20, 10, 1, 5, 800, direction, zondbePosition, Color.Chartreuse);
         }
     }
@@ -33,7 +33,7 @@ namespace Danya_VS_Zondbe
     {
         public override void Cast(Point zondbePosition, Point playerPosition)
         {
-            var direction = new Vector((playerPosition - zondbePosition).X, (playerPosition - zondbePosition).Y);
+            var direction = new Vector((playerPosition.X - zondbePosition.X), (playerPosition.Y - zondbePosition.Y));
             var bullet = new Bullet(30, 50, 1, 7, 1000, direction, zondbePosition, Color.Crimson);
         }
     }
