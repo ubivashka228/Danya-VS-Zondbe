@@ -1,9 +1,11 @@
 ﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace Danya_VS_Zondbe
 {
     public class Bullet
     {
+        public Bitmap Image;
         public readonly int Movement;
         public readonly int Damage;
         public readonly int Penetration;
@@ -11,9 +13,10 @@ namespace Danya_VS_Zondbe
         public readonly int Range;
         public readonly Vector Direction;
         public readonly Point Position;
-        public readonly Color Coloration;
+        public readonly PictureBox Picture = new PictureBox();
 
-        public Bullet(int movement, int damage, int bulletPenetration, int width, int range, Vector direction, Point position, Color coloration)
+        public Bullet(Bitmap image, int movement, int damage, int bulletPenetration,
+                      int width, int range, Vector direction, Point position)
         {
             Movement = movement;
             Damage = damage;
@@ -22,7 +25,6 @@ namespace Danya_VS_Zondbe
             Range = range;
             Direction = direction;
             Position = position;
-            Coloration = coloration;
         }
     }
 }

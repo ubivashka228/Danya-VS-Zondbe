@@ -40,7 +40,7 @@ namespace Danya_VS_Zondbe
             this.txtAmmo.ForeColor = System.Drawing.SystemColors.Control;
             this.txtAmmo.Location = new System.Drawing.Point(12, 9);
             this.txtAmmo.Name = "txtAmmo";
-            this.txtAmmo.Size = new System.Drawing.Size(112, 29);
+            this.txtAmmo.Size = new System.Drawing.Size(300, 29);
             this.txtAmmo.TabIndex = 0;
             this.txtAmmo.Text = "Ammo:";
             // 
@@ -48,9 +48,9 @@ namespace Danya_VS_Zondbe
             // 
             this.txtKills.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.txtKills.ForeColor = System.Drawing.SystemColors.Control;
-            this.txtKills.Location = new System.Drawing.Point(330, 9);
+            this.txtKills.Location = new System.Drawing.Point(650, 9);
             this.txtKills.Name = "txtKills";
-            this.txtKills.Size = new System.Drawing.Size(112, 29);
+            this.txtKills.Size = new System.Drawing.Size(200, 29);
             this.txtKills.TabIndex = 1;
             this.txtKills.Text = "Kills:";
             // 
@@ -58,7 +58,7 @@ namespace Danya_VS_Zondbe
             // 
             this.txtHealth.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.txtHealth.ForeColor = System.Drawing.SystemColors.Control;
-            this.txtHealth.Location = new System.Drawing.Point(610, 9);
+            this.txtHealth.Location = new System.Drawing.Point(1130, 9);
             this.txtHealth.Name = "txtHealth";
             this.txtHealth.Size = new System.Drawing.Size(112, 29);
             this.txtHealth.TabIndex = 2;
@@ -66,7 +66,7 @@ namespace Danya_VS_Zondbe
             // 
             // healthBar
             // 
-            this.healthBar.Location = new System.Drawing.Point(694, 12);
+            this.healthBar.Location = new System.Drawing.Point(1219, 12);
             this.healthBar.Name = "healthBar";
             this.healthBar.Size = new System.Drawing.Size(216, 23);
             this.healthBar.TabIndex = 3;

@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace Danya_VS_Zondbe
 {
@@ -13,39 +14,36 @@ namespace Danya_VS_Zondbe
                     if (!_wFlag)
                     {
                         GameModel.PlayerModel.Image = Properties.Resources.up;
-                        GameModel.PlayerModel.Direction += new Vector(0, -1);
+                        GameModel.PlayerModel.MoveDirection += new Vector(0, -1);
                         _wFlag = true;
                     }
-                    GameModel.PlayerModel.Move(1000, 600);
                     break;
                 case Keys.S:
                     if (!_sFlag)
                     {
                         GameModel.PlayerModel.Image = Properties.Resources.down;
-                        GameModel.PlayerModel.Direction += new Vector(0, 1);
+                        GameModel.PlayerModel.MoveDirection += new Vector(0, 1);
                         _sFlag = true;
                     }
-                    GameModel.PlayerModel.Move(1000, 600);
                     break;
                 case Keys.D:
                     if (!_dFlag)
                     {
                         GameModel.PlayerModel.Image = Properties.Resources.right;
-                        GameModel.PlayerModel.Direction += new Vector(1, 0);
+                        GameModel.PlayerModel.MoveDirection += new Vector(1, 0);
                         _dFlag = true;
                     }
-                    GameModel.PlayerModel.Move(1000, 600);
                     break;
                 case Keys.A:
                     if (!_aFlag)
                     {
                         GameModel.PlayerModel.Image = Properties.Resources.left;
-                        GameModel.PlayerModel.Direction += new Vector(-1, 0);
+                        GameModel.PlayerModel.MoveDirection += new Vector(-1, 0);
                         _aFlag = true;
                     }
-                    GameModel.PlayerModel.Move(1000, 600);
                     break;
             }
+            GameModel.PlayerModel.Move(1000, 610);
         }
         
         public static void KeyIsUp(KeyEventArgs e)
@@ -55,32 +53,45 @@ namespace Danya_VS_Zondbe
                 case Keys.W:
                     if (_wFlag)
                     {
-                        GameModel.PlayerModel.Direction += new Vector(0, 1);
+                        GameModel.PlayerModel.MoveDirection += new Vector(0, 1);
                         _wFlag = false;
                     }
                     break;
                 case Keys.S:
                     if (_sFlag)
                     {
-                        GameModel.PlayerModel.Direction += new Vector(0, -1);
+                        GameModel.PlayerModel.MoveDirection += new Vector(0, -1);
                         _sFlag = false;
                     }
                     break;
                 case Keys.D:
                     if (_dFlag)
                     {
-                        GameModel.PlayerModel.Direction += new Vector(-1, 0);
+                        GameModel.PlayerModel.MoveDirection += new Vector(-1, 0);
                         _dFlag = false;
                     }
                     break;
                 case Keys.A:
                     if (_aFlag)
                     {
-                        GameModel.PlayerModel.Direction += new Vector(1, 0);
+                        GameModel.PlayerModel.MoveDirection += new Vector(1, 0);
                         _aFlag = false;
                     }
                     break;
             }
+        }
+
+        public static void CreateZondbe(int zondbeNumber)
+        {
+            if (zondbeNumber == 1)
+                GameModel.ZondbeList.Add(new Zondbe(new StandardZondbeFabric(), 
+                    new Point(10, 10), Properties.Resources.zup));
+            if (zondbeNumber == 2)
+                GameModel.ZondbeList.Add(new Zondbe(new StandardZondbeFabric(), 
+                    new Point(100, 10), Properties.Resources.zup));
+            if (zondbeNumber == 3)
+                GameModel.ZondbeList.Add(new Zondbe(new StandardZondbeFabric(), 
+                    new Point(200, 10), Properties.Resources.zup));
         }
     }
 }

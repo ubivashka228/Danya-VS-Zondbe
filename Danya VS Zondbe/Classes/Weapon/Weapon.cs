@@ -16,6 +16,19 @@ namespace Danya_VS_Zondbe
         }
     }
 
+    public static class Drawer
+    {
+        public static Bitmap DrawBullet(Color color)
+        {
+            var bulletImage = new Bitmap(9, 9);
+            using (bulletImage)
+            using (var grf = Graphics.FromImage(bulletImage))
+            using (var brush = new SolidBrush(color))
+                grf.FillEllipse(brush, 0, 0, 10, 10);
+            return bulletImage;
+        }
+    }
+    
     public class Beretta : Weapon
     {
         public override WeaponCharasteristics CreateWeapon()
@@ -26,8 +39,8 @@ namespace Danya_VS_Zondbe
         public override Bullet Shot()
         {
             GameModel.PlayerModel.WeaponInfo.GunAmmo--;
-            return new Bullet(5000, 1, 1, 3, 600, 
-                GameModel.PlayerModel.Direction, GameModel.PlayerModel.Position, Color.Black);
+            return new Bullet(Drawer.DrawBullet(Color.Black), 5000, 1, 1, 3, 600, 
+                GameModel.PlayerModel.MoveDirection, GameModel.PlayerModel.Position);
         }
     }
     
@@ -41,8 +54,8 @@ namespace Danya_VS_Zondbe
         public override Bullet Shot()
         {
             GameModel.PlayerModel.WeaponInfo.GunAmmo--;
-            return new Bullet(5000, 5, 1, 4, 800, 
-                GameModel.PlayerModel.Direction, GameModel.PlayerModel.Position, Color.Black);
+            return new Bullet(Drawer.DrawBullet(Color.Black), 5000, 5, 
+                1, 4, 800, GameModel.PlayerModel.MoveDirection, GameModel.PlayerModel.Position);
         }
     }
     
@@ -56,8 +69,8 @@ namespace Danya_VS_Zondbe
         public override Bullet Shot()
         {
             GameModel.PlayerModel.WeaponInfo.GunAmmo--;
-            return new Bullet(5000, 2, 1, 3, 800, 
-                GameModel.PlayerModel.Direction, GameModel.PlayerModel.Position, Color.Black);
+            return new Bullet(Drawer.DrawBullet(Color.Black), 5000, 2, 1, 3, 800, 
+                GameModel.PlayerModel.MoveDirection, GameModel.PlayerModel.Position);
         }
     }
     
@@ -71,8 +84,8 @@ namespace Danya_VS_Zondbe
         public override Bullet Shot()
         {
             GameModel.PlayerModel.WeaponInfo.GunAmmo--;
-            return new Bullet(5000, 5, 2, 4, 1000, 
-                GameModel.PlayerModel.Direction, GameModel.PlayerModel.Position, Color.Black);
+            return new Bullet(Drawer.DrawBullet(Color.Black), 5000, 5, 2, 4, 1000, 
+                GameModel.PlayerModel.MoveDirection, GameModel.PlayerModel.Position);
         }
     }
     
@@ -86,8 +99,8 @@ namespace Danya_VS_Zondbe
         public override Bullet Shot()
         {
             GameModel.PlayerModel.WeaponInfo.GunAmmo--;
-            return new Bullet(5000, 10, 3, 4, 1100,
-                GameModel.PlayerModel.Direction, GameModel.PlayerModel.Position, Color.Black);
+            return new Bullet(Drawer.DrawBullet(Color.Black), 5000, 10, 3, 4, 1100,
+                GameModel.PlayerModel.MoveDirection, GameModel.PlayerModel.Position);
         }
     }
     
@@ -102,8 +115,8 @@ namespace Danya_VS_Zondbe
         {
             
             GameModel.PlayerModel.WeaponInfo.GunAmmo--;
-            return new Bullet(5000, 6000, 100, 50, 400, 
-                GameModel.PlayerModel.Direction, GameModel.PlayerModel.Position, Color.Black);
+            return new Bullet(Drawer.DrawBullet(Color.Black), 5000, 6000, 100, 50, 400, 
+                GameModel.PlayerModel.MoveDirection, GameModel.PlayerModel.Position);
         }
     }
     
@@ -117,8 +130,8 @@ namespace Danya_VS_Zondbe
         public override Bullet Shot()
         {
             GameModel.PlayerModel.WeaponInfo.GunAmmo--;
-            return new Bullet(5000, 30, 3, 5, 1200,
-                GameModel.PlayerModel.Direction, GameModel.PlayerModel.Position, Color.Black);
+            return new Bullet(Drawer.DrawBullet(Color.Black), 5000, 30, 3, 5, 1200,
+                GameModel.PlayerModel.MoveDirection, GameModel.PlayerModel.Position);
         }
     }
     
@@ -132,8 +145,8 @@ namespace Danya_VS_Zondbe
         public override Bullet Shot()
         {
             GameModel.PlayerModel.WeaponInfo.GunAmmo--;
-            return new Bullet(5000, 100, 100, 5, 1500,
-                GameModel.PlayerModel.Direction, GameModel.PlayerModel.Position, Color.RoyalBlue);
+            return new Bullet(Drawer.DrawBullet(Color.RoyalBlue), 5000, 100, 100, 5, 1500,
+                GameModel.PlayerModel.MoveDirection, GameModel.PlayerModel.Position);
         }
     }
     
@@ -147,8 +160,8 @@ namespace Danya_VS_Zondbe
         public override Bullet Shot()
         {
             GameModel.PlayerModel.WeaponInfo.GunAmmo--;
-            return new Bullet(5000, 100, 100, 5, 1800,
-                GameModel.PlayerModel.Direction, GameModel.PlayerModel.Position, Color.RoyalBlue);
+            return new Bullet(Drawer.DrawBullet(Color.RoyalBlue), 5000, 100, 100, 5, 1800,
+                GameModel.PlayerModel.MoveDirection, GameModel.PlayerModel.Position);
         }
     }
 }

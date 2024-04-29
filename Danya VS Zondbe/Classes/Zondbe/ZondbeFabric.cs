@@ -192,6 +192,7 @@ namespace Danya_VS_Zondbe
 
     public class Zondbe
     {
+        public Bitmap ZondbeImage;
         public readonly ZondbeCharasteristics Charasteristics;
         private readonly ZondbeSkull _skull;
         private readonly WalkingStrategy _walkingStrategy;
@@ -207,8 +208,9 @@ namespace Danya_VS_Zondbe
             return _walkingStrategy.Move(GameModel.PlayerModel.Position, Position, Charasteristics.Movement);
         }
         
-        public Zondbe(ZondbeFabric zondbeFabric, Point position)
+        public Zondbe(ZondbeFabric zondbeFabric, Point position, Bitmap zondbeImage)
         {
+            ZondbeImage = zondbeImage;
             Charasteristics = zondbeFabric.CreateZondbe();
             _skull = zondbeFabric.CreateSkull();
             _walkingStrategy = zondbeFabric.CreateWalkingStrategy();

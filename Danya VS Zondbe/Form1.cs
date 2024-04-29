@@ -19,14 +19,21 @@ namespace Danya_VS_Zondbe
             this.KeyDown += new KeyEventHandler(KeyIsDown);
             this.KeyUp += new KeyEventHandler(KeyIsUp);
         }
-
+        
         private void MainTimerEvent(object sender, ElapsedEventArgs e)
         {
-            var a = 0;
+            var random = new Random();
+            var zondbeNumber = random.Next(1, 3);
+            if (GameModel.PlayerModel.Health > 0)
+                healthBar.Value = GameModel.PlayerModel.Health;
+            txtAmmo.Text = 
+                           $@"Ammo {GameModel.PlayerModel.WeaponInfo.GunAmmo} / {GameModel.PlayerModel.WeaponInfo.AmmoCapacity}";
+            txtKills.Text = @"Kills: " + GameModel.Score;
         }
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
+            Cursor.Current = Cursors.Cross;
             Controller.KeyIsDown(e);
             UpdateMap();
         }
