@@ -21,9 +21,12 @@ namespace Danya_VS_Zondbe
             this.MouseMove += MouseIsMove;
             this.MouseClick += MouseIsClick;
         }
-        
+
+        private int _timerTicks;
         private void MainTimerEvent(object sender, ElapsedEventArgs e)
         {
+            _timerTicks++;
+            UpdateBullets();
             UpdateBars();
         }
 
@@ -36,6 +39,7 @@ namespace Danya_VS_Zondbe
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
             Controller.KeyIsUp(e);
+            UpdatePlayer();
         }
         
         private void MouseIsMove(object sender, MouseEventArgs e)
@@ -72,6 +76,8 @@ namespace Danya_VS_Zondbe
                     bullet.MakeBullet(this);
                     bullet.OnMap = true;
                 }
+
+                bullet.Move();
             }
         }
     }

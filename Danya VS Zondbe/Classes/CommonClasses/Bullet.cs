@@ -7,33 +7,32 @@ namespace Danya_VS_Zondbe
     public class Bullet
     {
         public Bitmap Image;
-        public readonly int Speed;
+        private readonly int _speed;
         public readonly int Damage;
         public readonly int Penetration;
         public readonly int Width;
         public readonly int Range;
-        public readonly Vector Direction;
+        private readonly Vector _direction;
         private Point _position;
-        private PictureBox _picture = new PictureBox();
-        private Timer _bulletTimer = new Timer();
+        private readonly PictureBox _picture = new PictureBox();
         public bool OnMap = false;
 
         public Bullet(Bitmap image, int speed, int damage, int bulletPenetration,
                       int width, int range, Vector direction, Point position)
         {
             Image = image;
-            Speed = speed;
+            _speed = speed;
             Damage = damage;
             Penetration = bulletPenetration;
             Width = width;
             Range = range;
-            Direction = direction;
+            _direction = direction;
             _position = position;
         }
 
-        private void Move(object sender, EventArgs e)
+        public void Move()
         {
-            var shift = new Vector(Speed, 0).Rotate(Direction.Angle);
+            var shift = new Vector(_speed, 0).Rotate(_direction.Angle);
             var newPosition = new Point((int)Math.Round(shift.X + _position.X), (int)Math.Round(shift.Y + _position.Y));
             if (newPosition.X > 10 && newPosition.X < 1500 && newPosition.Y > 10 && newPosition.Y < 780)
             {
@@ -43,12 +42,7 @@ namespace Danya_VS_Zondbe
             }
             else
             {
-                _bulletTimer.Stop();
-                _bulletTimer.Dispose();
                 _picture.Dispose();
-                _bulletTimer = null;
-                _picture = null;
-
             }
         }
         
@@ -62,10 +56,7 @@ namespace Danya_VS_Zondbe
             _picture.BringToFront();
             
             form.Controls.Add(_picture);
-
-            _bulletTimer.Interval = 40;
-            _bulletTimer.Tick += new EventHandler(Move);
-            _bulletTimer.Start();
+            
             Console.WriteLine("created");
         }
     }

@@ -95,10 +95,9 @@ namespace Danya_VS_Zondbe
 
         public static void MouseIsClick(MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left && GameModel.PlayerModel.WeaponInfo.GunAmmo != 0)
+            if (e.Button == MouseButtons.Left && GameModel.PlayerModel.WeaponInfo.GunAmmo != 0 && !GameModel.PlayerModel.WeaponInfo.IsReloading)
             {
                 GameModel.BulletList.Add(GameModel.PlayerModel.Shot());
-                Console.WriteLine(GameModel.PlayerModel.WeaponInfo.GunAmmo);
             }
         }
     }

@@ -85,7 +85,7 @@ namespace Danya_VS_Zondbe
             // GameTimer
             // 
             this.GameTimer.Enabled = true;
-            this.GameTimer.Interval = 20D;
+            this.GameTimer.Interval = 40D;
             this.GameTimer.SynchronizingObject = this;
             this.GameTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.MainTimerEvent);
             // 
@@ -100,6 +100,7 @@ namespace Danya_VS_Zondbe
             this.Controls.Add(this.txtHealth);
             this.Controls.Add(this.txtKills);
             this.Controls.Add(this.txtAmmo);
+            this.Cursor = System.Windows.Forms.Cursors.Cross;
             this.Name = "Form1";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
