@@ -6,6 +6,7 @@
         public int GunAmmo;
         public readonly int AmmoCapacity;
         public readonly int ReloadTime;
+        public bool IsReloading;
 
         public WeaponCharasteristics(int fireRate, int ammoCapacity, int reloadTime)
         {

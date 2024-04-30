@@ -48,7 +48,7 @@ namespace Danya_VS_Zondbe
             // 
             this.txtKills.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.txtKills.ForeColor = System.Drawing.SystemColors.Control;
-            this.txtKills.Location = new System.Drawing.Point(650, 9);
+            this.txtKills.Location = new System.Drawing.Point(980, 9);
             this.txtKills.Name = "txtKills";
             this.txtKills.Size = new System.Drawing.Size(200, 29);
             this.txtKills.TabIndex = 1;
@@ -58,7 +58,7 @@ namespace Danya_VS_Zondbe
             // 
             this.txtHealth.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.txtHealth.ForeColor = System.Drawing.SystemColors.Control;
-            this.txtHealth.Location = new System.Drawing.Point(1130, 9);
+            this.txtHealth.Location = new System.Drawing.Point(1735, 9);
             this.txtHealth.Name = "txtHealth";
             this.txtHealth.Size = new System.Drawing.Size(112, 29);
             this.txtHealth.TabIndex = 2;
@@ -66,7 +66,7 @@ namespace Danya_VS_Zondbe
             // 
             // healthBar
             // 
-            this.healthBar.Location = new System.Drawing.Point(1219, 12);
+            this.healthBar.Location = new System.Drawing.Point(1825, 12);
             this.healthBar.Name = "healthBar";
             this.healthBar.Size = new System.Drawing.Size(216, 23);
             this.healthBar.TabIndex = 3;
@@ -94,13 +94,15 @@ namespace Danya_VS_Zondbe
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1440, 900);
+            this.ClientSize = new System.Drawing.Size(1902, 853);
             this.Controls.Add(this.player);
             this.Controls.Add(this.healthBar);
             this.Controls.Add(this.txtHealth);
             this.Controls.Add(this.txtKills);
             this.Controls.Add(this.txtAmmo);
             this.Name = "Form1";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
             this.Text = "Danya VS Zondbe";
             ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GameTimer)).EndInit();

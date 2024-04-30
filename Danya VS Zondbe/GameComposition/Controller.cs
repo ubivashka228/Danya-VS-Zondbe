@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Danya_VS_Zondbe
@@ -43,7 +44,8 @@ namespace Danya_VS_Zondbe
                     }
                     break;
             }
-            GameModel.PlayerModel.Move(1000, 610);
+            if (_aFlag || _dFlag || _sFlag || _wFlag)
+                GameModel.PlayerModel.Move(1450, 720);
         }
         
         public static void KeyIsUp(KeyEventArgs e)
@@ -78,20 +80,26 @@ namespace Danya_VS_Zondbe
                         _aFlag = false;
                     }
                     break;
+                case Keys.R:
+                    if (!GameModel.PlayerModel.WeaponInfo.IsReloading)
+                        GameModel.PlayerModel.PlayerWeapon.Reload();
+                    break;
             }
         }
 
-        public static void CreateZondbe(int zondbeNumber)
+        public static void MouseIsMove()
         {
-            if (zondbeNumber == 1)
-                GameModel.ZondbeList.Add(new Zondbe(new StandardZondbeFabric(), 
-                    new Point(10, 10), Properties.Resources.zup));
-            if (zondbeNumber == 2)
-                GameModel.ZondbeList.Add(new Zondbe(new StandardZondbeFabric(), 
-                    new Point(100, 10), Properties.Resources.zup));
-            if (zondbeNumber == 3)
-                GameModel.ZondbeList.Add(new Zondbe(new StandardZondbeFabric(), 
-                    new Point(200, 10), Properties.Resources.zup));
+            GameModel.PlayerModel.ShotDirection = new Vector(Cursor.Position.X - GameModel.PlayerModel.Position.X,
+                Cursor.Position.Y - GameModel.PlayerModel.Position.Y);
+        }
+
+        public static void MouseIsClick(MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && GameModel.PlayerModel.WeaponInfo.GunAmmo != 0)
+            {
+                GameModel.BulletList.Add(GameModel.PlayerModel.Shot());
+                Console.WriteLine(GameModel.PlayerModel.WeaponInfo.GunAmmo);
+            }
         }
     }
 }

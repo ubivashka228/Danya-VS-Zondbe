@@ -10,10 +10,16 @@ namespace Danya_VS_Zondbe
         private readonly int _speed;
         public Point Position;
         public Vector MoveDirection;
-        private readonly Weapon _playerWeapon;
+        public Vector ShotDirection;
+        public readonly Weapon PlayerWeapon;
+        public readonly WeaponCharasteristics WeaponInfo;
         
-        public WeaponCharasteristics WeaponInfo => _playerWeapon.CreateWeapon();
-        public Bullet Shot => _playerWeapon.Shot();
+        public Bullet Shot()
+        {
+            WeaponInfo.GunAmmo--;
+            return PlayerWeapon.Shot();
+        }
+        
 
         public Player(Bitmap image, int health, int speed, Point position, Vector moveDirection, Weapon weapon)
         {
@@ -22,7 +28,8 @@ namespace Danya_VS_Zondbe
             _speed = speed;
             Position = position;
             MoveDirection = moveDirection;
-            _playerWeapon = weapon;
+            PlayerWeapon = weapon;
+            WeaponInfo = PlayerWeapon.CreateWeapon();
         }
 
         public void Move(int mapWidth, int mapHeight)

@@ -16,37 +16,63 @@ namespace Danya_VS_Zondbe
         public Form1()
         {
             InitializeComponent();
-            this.KeyDown += new KeyEventHandler(KeyIsDown);
-            this.KeyUp += new KeyEventHandler(KeyIsUp);
+            this.KeyDown += KeyIsDown;
+            this.KeyUp += KeyIsUp;
+            this.MouseMove += MouseIsMove;
+            this.MouseClick += MouseIsClick;
         }
         
         private void MainTimerEvent(object sender, ElapsedEventArgs e)
         {
-            var random = new Random();
-            var zondbeNumber = random.Next(1, 3);
-            if (GameModel.PlayerModel.Health > 0)
-                healthBar.Value = GameModel.PlayerModel.Health;
-            txtAmmo.Text = 
-                           $@"Ammo {GameModel.PlayerModel.WeaponInfo.GunAmmo} / {GameModel.PlayerModel.WeaponInfo.AmmoCapacity}";
-            txtKills.Text = @"Kills: " + GameModel.Score;
+            UpdateBars();
         }
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
-            Cursor.Current = Cursors.Cross;
             Controller.KeyIsDown(e);
-            UpdateMap();
+            UpdatePlayer();
         }
         
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
             Controller.KeyIsUp(e);
         }
+        
+        private void MouseIsMove(object sender, MouseEventArgs e)
+        {
+            Controller.MouseIsMove();
+        }
+        
+        private void MouseIsClick(object sender, MouseEventArgs e)
+        {
+            Controller.MouseIsClick(e);
+            UpdateBullets();
+        }
 
-        private void UpdateMap()
+        private void UpdatePlayer()
         {
             player.Image = GameModel.PlayerModel.Image;
             player.Location = GameModel.PlayerModel.Position;
+        }
+
+        private void UpdateBars()
+        {
+            if (GameModel.PlayerModel.Health > 0)
+                healthBar.Value = GameModel.PlayerModel.Health;
+            txtAmmo.Text = $@"Ammo {GameModel.PlayerModel.WeaponInfo.GunAmmo} / {GameModel.PlayerModel.WeaponInfo.AmmoCapacity}";
+            txtKills.Text = @"Kills: " + GameModel.Score;
+        }
+        
+        private void UpdateBullets()
+        {
+            foreach (var bullet in GameModel.BulletList)
+            {
+                if (!bullet.OnMap)
+                {
+                    bullet.MakeBullet(this);
+                    bullet.OnMap = true;
+                }
+            }
         }
     }
 }
