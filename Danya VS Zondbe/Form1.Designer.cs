@@ -75,7 +75,7 @@ namespace Danya_VS_Zondbe
             // player
             // 
             this.player.Image = global::Danya_VS_Zondbe.Properties.Resources.up;
-            this.player.Location = new System.Drawing.Point(600, 450);
+            this.player.Location = new System.Drawing.Point(1000, 450);
             this.player.Name = "player";
             this.player.Size = new System.Drawing.Size(71, 100);
             this.player.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -85,7 +85,7 @@ namespace Danya_VS_Zondbe
             // GameTimer
             // 
             this.GameTimer.Enabled = true;
-            this.GameTimer.Interval = 40D;
+            this.GameTimer.Interval = 10D;
             this.GameTimer.SynchronizingObject = this;
             this.GameTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.MainTimerEvent);
             // 

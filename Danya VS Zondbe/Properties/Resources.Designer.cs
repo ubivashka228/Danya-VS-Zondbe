@@ -122,9 +122,9 @@ namespace Danya_VS_Zondbe.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap zdown {
+        internal static System.Drawing.Bitmap z1 {
             get {
-                object obj = ResourceManager.GetObject("zdown", resourceCulture);
+                object obj = ResourceManager.GetObject("z1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -132,9 +132,9 @@ namespace Danya_VS_Zondbe.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap zleft {
+        internal static System.Drawing.Bitmap z10 {
             get {
-                object obj = ResourceManager.GetObject("zleft", resourceCulture);
+                object obj = ResourceManager.GetObject("z10", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -142,9 +142,9 @@ namespace Danya_VS_Zondbe.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap zright {
+        internal static System.Drawing.Bitmap z2 {
             get {
-                object obj = ResourceManager.GetObject("zright", resourceCulture);
+                object obj = ResourceManager.GetObject("z2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -152,9 +152,69 @@ namespace Danya_VS_Zondbe.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap zup {
+        internal static System.Drawing.Bitmap z3 {
             get {
-                object obj = ResourceManager.GetObject("zup", resourceCulture);
+                object obj = ResourceManager.GetObject("z3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap z4 {
+            get {
+                object obj = ResourceManager.GetObject("z4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap z5 {
+            get {
+                object obj = ResourceManager.GetObject("z5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap z6 {
+            get {
+                object obj = ResourceManager.GetObject("z6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap z7 {
+            get {
+                object obj = ResourceManager.GetObject("z7", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap z8 {
+            get {
+                object obj = ResourceManager.GetObject("z8", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap z9 {
+            get {
+                object obj = ResourceManager.GetObject("z9", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -6,58 +6,63 @@ namespace Danya_VS_Zondbe
 {
     public class Bullet
     {
-        public Bitmap Image;
-        private readonly int _speed;
+        private readonly Color _color;
+        private const int Speed = 30;
         public readonly int Damage;
-        public readonly int Penetration;
-        public readonly int Width;
-        public readonly int Range;
+        public int Penetration;
+        private readonly int _width;
+        private int _range;
         private readonly Vector _direction;
-        private Point _position;
-        private readonly PictureBox _picture = new PictureBox();
+        private Point Position { get; set; }
+        public readonly PictureBox Picture = new PictureBox();
         public bool OnMap = false;
+        public bool Deleted;
 
-        public Bullet(Bitmap image, int speed, int damage, int bulletPenetration,
+        public Bullet(Color color, int damage, int bulletPenetration,
                       int width, int range, Vector direction, Point position)
         {
-            Image = image;
-            _speed = speed;
+            _color = color;
             Damage = damage;
             Penetration = bulletPenetration;
-            Width = width;
-            Range = range;
+            _width = width;
+            _range = range;
             _direction = direction;
-            _position = position;
+            Position = position;
         }
 
         public void Move()
         {
-            var shift = new Vector(_speed, 0).Rotate(_direction.Angle);
-            var newPosition = new Point((int)Math.Round(shift.X + _position.X), (int)Math.Round(shift.Y + _position.Y));
-            if (newPosition.X > 10 && newPosition.X < 1500 && newPosition.Y > 10 && newPosition.Y < 780)
+            var shift = new Vector(Speed, 0).Rotate(_direction.Angle);
+            var newPosition = new Point((int)Math.Round(shift.X + Position.X), (int)Math.Round(shift.Y + Position.Y));
+            if (newPosition.X > 10 && newPosition.X < 1500 && newPosition.Y > 10 && newPosition.Y < 780 && _range > 0)
             {
-                _position = newPosition;
-                _picture.Left = _position.X;
-                _picture.Top = _position.Y;
+                Position = newPosition;
+                Picture.Left = Position.X;
+                Picture.Top = Position.Y;
+                _range -= Speed;
             }
             else
             {
-                _picture.Dispose();
+                Remove();
             }
+        }
+
+        public void Remove()
+        {
+            Picture.Dispose();
+            Deleted = true;
         }
         
         public void MakeBullet(Form form)
         {
-            _picture.BackColor = Color.White;
-            _picture.Size = new Size(5, 5);
-            _picture.Tag = "bullet";
-            _picture.Left = _position.X;
-            _picture.Top = _position.Y;
-            _picture.BringToFront();
+            Picture.BackColor = _color;
+            Picture.Size = new Size(_width, _width);
+            Picture.Tag = "bullet";
+            Picture.Left = Position.X;
+            Picture.Top = Position.Y;
+            Picture.BringToFront();
             
-            form.Controls.Add(_picture);
-            
-            Console.WriteLine("created");
+            form.Controls.Add(Picture);
         }
     }
 }

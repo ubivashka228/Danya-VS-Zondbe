@@ -21,9 +21,9 @@ namespace Danya_VS_Zondbe
     {
         public override Point Move(Point playerPosition, Point zondbePosition, int movement)
         {
-            const int shootRange = 400;
+            const int shootRange = 500;
             var direction = new Vector((playerPosition.X - zondbePosition.X), (playerPosition.Y - zondbePosition.Y));
-            if (direction.Length < shootRange) return new Point(0, 0);
+            if (direction.Length < shootRange) return zondbePosition;
         
             var shift = new Vector(movement, 0).Rotate(direction.Angle);
             return new Point((int)shift.X + zondbePosition.X, (int)shift.Y + zondbePosition.Y);

@@ -2,15 +2,13 @@
 {
     public class WeaponCharasteristics
     {
-        public readonly int FireRate;
         public int GunAmmo;
         public readonly int AmmoCapacity;
         public readonly int ReloadTime;
         public bool IsReloading;
 
-        public WeaponCharasteristics(int fireRate, int ammoCapacity, int reloadTime)
+        public WeaponCharasteristics(int ammoCapacity, int reloadTime)
         {
-            FireRate = fireRate;
             GunAmmo = ammoCapacity;
             AmmoCapacity = ammoCapacity;
             ReloadTime = reloadTime;

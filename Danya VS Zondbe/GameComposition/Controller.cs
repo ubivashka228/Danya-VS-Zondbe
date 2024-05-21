@@ -1,6 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Danya_VS_Zondbe
 {
@@ -14,7 +12,7 @@ namespace Danya_VS_Zondbe
                 case Keys.W:
                     if (!_wFlag)
                     {
-                        GameModel.PlayerModel.Image = Properties.Resources.up;
+                        GameModel.PlayerModel.Picture.Image = Properties.Resources.up;
                         GameModel.PlayerModel.MoveDirection += new Vector(0, -1);
                         _wFlag = true;
                     }
@@ -22,7 +20,7 @@ namespace Danya_VS_Zondbe
                 case Keys.S:
                     if (!_sFlag)
                     {
-                        GameModel.PlayerModel.Image = Properties.Resources.down;
+                        GameModel.PlayerModel.Picture.Image = Properties.Resources.down;
                         GameModel.PlayerModel.MoveDirection += new Vector(0, 1);
                         _sFlag = true;
                     }
@@ -30,7 +28,7 @@ namespace Danya_VS_Zondbe
                 case Keys.D:
                     if (!_dFlag)
                     {
-                        GameModel.PlayerModel.Image = Properties.Resources.right;
+                        GameModel.PlayerModel.Picture.Image = Properties.Resources.right;
                         GameModel.PlayerModel.MoveDirection += new Vector(1, 0);
                         _dFlag = true;
                     }
@@ -38,7 +36,7 @@ namespace Danya_VS_Zondbe
                 case Keys.A:
                     if (!_aFlag)
                     {
-                        GameModel.PlayerModel.Image = Properties.Resources.left;
+                        GameModel.PlayerModel.Picture.Image = Properties.Resources.left;
                         GameModel.PlayerModel.MoveDirection += new Vector(-1, 0);
                         _aFlag = true;
                     }
@@ -82,7 +80,7 @@ namespace Danya_VS_Zondbe
                     break;
                 case Keys.R:
                     if (!GameModel.PlayerModel.WeaponInfo.IsReloading)
-                        GameModel.PlayerModel.PlayerWeapon.Reload();
+                        Weapon.Reload();
                     break;
             }
         }
@@ -97,7 +95,7 @@ namespace Danya_VS_Zondbe
         {
             if (e.Button == MouseButtons.Left && GameModel.PlayerModel.WeaponInfo.GunAmmo != 0 && !GameModel.PlayerModel.WeaponInfo.IsReloading)
             {
-                GameModel.BulletList.Add(GameModel.PlayerModel.Shot());
+                GameModel.PlayerBulletList.Add(GameModel.PlayerModel.Shot());
             }
         }
     }

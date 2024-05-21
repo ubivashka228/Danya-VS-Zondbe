@@ -97,10 +97,16 @@
       <Content Include="Properties\Resources\left.png" />
       <Content Include="Properties\Resources\right.png" />
       <Content Include="Properties\Resources\up.png" />
-      <Content Include="Properties\Resources\zdown.png" />
-      <Content Include="Properties\Resources\zleft.png" />
-      <Content Include="Properties\Resources\zright.png" />
-      <Content Include="Properties\Resources\zup.png" />
+      <Content Include="Properties\Resources\z1.png" />
+      <Content Include="Properties\Resources\z10.png" />
+      <Content Include="Properties\Resources\z2.png" />
+      <Content Include="Properties\Resources\z3.png" />
+      <Content Include="Properties\Resources\z4.png" />
+      <Content Include="Properties\Resources\z5.png" />
+      <Content Include="Properties\Resources\z6.png" />
+      <Content Include="Properties\Resources\z7.png" />
+      <Content Include="Properties\Resources\z8.png" />
+      <Content Include="Properties\Resources\z9.png" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
 </Project>

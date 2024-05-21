@@ -5,11 +5,11 @@ namespace Danya_VS_Zondbe
 {
     public class Player
     {
-        public Bitmap Image;
+        public readonly PictureBox Picture;
         public int Health;
         private readonly int _speed;
         public Point Position;
-        public Vector MoveDirection;
+        public Vector MoveDirection = new Vector(0, 0);
         public Vector ShotDirection;
         public readonly Weapon PlayerWeapon;
         public readonly WeaponCharasteristics WeaponInfo;
@@ -21,13 +21,12 @@ namespace Danya_VS_Zondbe
         }
         
 
-        public Player(Bitmap image, int health, int speed, Point position, Vector moveDirection, Weapon weapon)
+        public Player(PictureBox picture, int health, int speed, Point position, Weapon weapon)
         {
-            Image = image;
+            Picture = picture;
             Health = health;
             _speed = speed;
             Position = position;
-            MoveDirection = moveDirection;
             PlayerWeapon = weapon;
             WeaponInfo = PlayerWeapon.CreateWeapon();
         }

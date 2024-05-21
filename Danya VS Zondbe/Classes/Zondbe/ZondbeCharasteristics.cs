@@ -1,20 +1,24 @@
-﻿namespace Danya_VS_Zondbe
+﻿using System.Drawing;
+
+namespace Danya_VS_Zondbe
 {
     public class ZondbeCharasteristics
     {
-        public readonly int Hp;
+        public int Hp;
         public readonly int Movement;
         public readonly int Damage;
         public readonly int Armor;
-        public readonly int Award;
+        public readonly Bitmap ZondbeImage;
+        public int SkullReloadTime;
 
-        public ZondbeCharasteristics(int hp, int movement, int damage, int armor, int award)
+        public ZondbeCharasteristics(int hp, int movement, int damage, int armor, Bitmap zondbeImage, int skullReloadTime)
         {
             Hp = hp;
             Movement = movement;
             Damage = damage;
             Armor = armor;
-            Award = award;
+            ZondbeImage = zondbeImage;
+            SkullReloadTime = skullReloadTime;
         }
     }
 }

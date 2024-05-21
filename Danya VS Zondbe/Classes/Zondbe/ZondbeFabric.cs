@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Danya_VS_Zondbe
 {
@@ -14,7 +15,7 @@ namespace Danya_VS_Zondbe
     {
         public override ZondbeCharasteristics CreateZondbe()
         {
-            return new ZondbeCharasteristics(1, 3, 1, 0, 1);
+            return new ZondbeCharasteristics(10, 8, 1, 0, Properties.Resources.z1, 10000);
         }
 
         public override WalkingStrategy CreateWalkingStrategy()
@@ -24,7 +25,7 @@ namespace Danya_VS_Zondbe
 
         public override ZondbeSkull CreateSkull()
         {
-            throw new NotImplementedException();
+            return new NotSkulls();
         }
     }
 
@@ -32,7 +33,7 @@ namespace Danya_VS_Zondbe
     {
         public override ZondbeCharasteristics CreateZondbe()
         {
-            return new ZondbeCharasteristics(25, 5, 5, 0, 5);
+            return new ZondbeCharasteristics(25, 12, 3, 0, Properties.Resources.z2, 10000);
         }
 
         public override WalkingStrategy CreateWalkingStrategy()
@@ -42,7 +43,7 @@ namespace Danya_VS_Zondbe
 
         public override ZondbeSkull CreateSkull()
         {
-            throw new NotImplementedException();
+            return new NotSkulls();
         }
     }
 
@@ -50,7 +51,7 @@ namespace Danya_VS_Zondbe
     {
         public override ZondbeCharasteristics CreateZondbe()
         {
-            return new ZondbeCharasteristics(50, 5, 10, 1, 10);
+            return new ZondbeCharasteristics(50, 12, 5, 1, Properties.Resources.z3, 10000);
         }
 
         public override WalkingStrategy CreateWalkingStrategy()
@@ -60,7 +61,7 @@ namespace Danya_VS_Zondbe
 
         public override ZondbeSkull CreateSkull()
         {
-            throw new NotImplementedException();
+            return new NotSkulls();
         }
     }
 
@@ -68,7 +69,7 @@ namespace Danya_VS_Zondbe
     {
         public override ZondbeCharasteristics CreateZondbe()
         {
-            return new ZondbeCharasteristics(50, 4, 2, 0, 25);
+            return new ZondbeCharasteristics(50, 11, 2, 0, Properties.Resources.z4, 4000);
         }
 
         public override WalkingStrategy CreateWalkingStrategy()
@@ -86,7 +87,7 @@ namespace Danya_VS_Zondbe
     {
         public override ZondbeCharasteristics CreateZondbe()
         {
-            return new ZondbeCharasteristics(500, 3, 15, 2, 50);
+            return new ZondbeCharasteristics(500, 10, 5, 2, Properties.Resources.z5, 10000);
         }
 
         public override WalkingStrategy CreateWalkingStrategy()
@@ -96,7 +97,7 @@ namespace Danya_VS_Zondbe
 
         public override ZondbeSkull CreateSkull()
         {
-            throw new NotImplementedException();
+            return new NotSkulls();
         }
     }
 
@@ -104,7 +105,7 @@ namespace Danya_VS_Zondbe
     {
         public override ZondbeCharasteristics CreateZondbe()
         {
-            return new ZondbeCharasteristics(500, 5, 10, 2, 100);
+            return new ZondbeCharasteristics(500, 9, 10, 2, Properties.Resources.z6, 8000);
         }
 
         public override WalkingStrategy CreateWalkingStrategy()
@@ -122,7 +123,7 @@ namespace Danya_VS_Zondbe
     {
         public override ZondbeCharasteristics CreateZondbe()
         {
-            return new ZondbeCharasteristics(1000, 6, 20, 2, 250);
+            return new ZondbeCharasteristics(1000, 15, 15, 2, Properties.Resources.z7, 2000);
         }
 
         public override WalkingStrategy CreateWalkingStrategy()
@@ -140,7 +141,7 @@ namespace Danya_VS_Zondbe
     {
         public override ZondbeCharasteristics CreateZondbe()
         {
-            return new ZondbeCharasteristics(2000, 20, 40, 3, 250);
+            return new ZondbeCharasteristics(2000, 20, 10, 3, Properties.Resources.z8, 10000);
         }
 
         public override WalkingStrategy CreateWalkingStrategy()
@@ -150,7 +151,7 @@ namespace Danya_VS_Zondbe
 
         public override ZondbeSkull CreateSkull()
         {
-            throw new NotImplementedException();
+            return new NotSkulls();
         }
     }
 
@@ -158,7 +159,7 @@ namespace Danya_VS_Zondbe
     {
         public override ZondbeCharasteristics CreateZondbe()
         {
-            return new ZondbeCharasteristics(25000, 7, 100, 50, 1000);
+            return new ZondbeCharasteristics(10000, 13, 20, 50, Properties.Resources.z9, 10000);
         }
 
         public override WalkingStrategy CreateWalkingStrategy()
@@ -168,7 +169,7 @@ namespace Danya_VS_Zondbe
 
         public override ZondbeSkull CreateSkull()
         {
-            throw new NotImplementedException();
+            return new NotSkulls();
         }
     }
 
@@ -176,7 +177,7 @@ namespace Danya_VS_Zondbe
     {
         public override ZondbeCharasteristics CreateZondbe()
         {
-            return new ZondbeCharasteristics(250000, 10, 200, 60, 10);
+            return new ZondbeCharasteristics(100000, 10, 50, 60, Properties.Resources.z10, 8000);
         }
 
         public override WalkingStrategy CreateWalkingStrategy()
@@ -192,25 +193,57 @@ namespace Danya_VS_Zondbe
 
     public class Zondbe
     {
-        public Bitmap ZondbeImage;
         public readonly ZondbeCharasteristics Charasteristics;
         private readonly ZondbeSkull _skull;
         private readonly WalkingStrategy _walkingStrategy;
-        public Point Position;
-
-        public void Cast()
+        private Point Position { get; set; }
+        public readonly PictureBox Picture = new PictureBox();
+        public bool OnMap = false;
+        public int TimerTicksLastHit;
+        public int TimerTicksLastCast;
+        
+        public void MakeZondbe(Form form)
         {
-            _skull.Cast(Position, GameModel.PlayerModel.Position);
+            Picture.Image = Charasteristics.ZondbeImage;
+            Picture.Location = Position;
+            Picture.Tag = "zondbe";
+            Picture.SizeMode = PictureBoxSizeMode.AutoSize;
+            Picture.BringToFront();
+            
+            form.Controls.Add(Picture);
         }
 
-        public Point Move()
+        public void Remove()
         {
-            return _walkingStrategy.Move(GameModel.PlayerModel.Position, Position, Charasteristics.Movement);
+            Picture.Dispose();
+        }
+
+        public void Cast(Form1 form)
+        {
+            _skull.Cast(Position, GameModel.PlayerModel.Position, form);
+        }
+
+        public void Move()
+        {
+            var newPosition = _walkingStrategy.Move(GameModel.PlayerModel.Position, Position, Charasteristics.Movement);
+            
+            var direction = new Point(GameModel.PlayerModel.Position.X - Position.X, 
+                                      GameModel.PlayerModel.Position.Y - Position.Y);
+            var img = new Bitmap(Charasteristics.ZondbeImage);
+            if (Math.Abs(direction.X) > Math.Abs(direction.Y) && direction.X < 0)
+                img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            else if (Math.Abs(direction.X) < Math.Abs(direction.Y) && direction.Y < 0)
+                img.RotateFlip(RotateFlipType.Rotate180FlipNone);
+            else if (Math.Abs(direction.X) > Math.Abs(direction.Y) && direction.X > 0)
+                img.RotateFlip(RotateFlipType.Rotate270FlipNone);
+            Picture.Image = img;
+            
+            Picture.Location = newPosition;
+            Position = newPosition;
         }
         
-        public Zondbe(ZondbeFabric zondbeFabric, Point position, Bitmap zondbeImage)
+        public Zondbe(ZondbeFabric zondbeFabric, Point position)
         {
-            ZondbeImage = zondbeImage;
             Charasteristics = zondbeFabric.CreateZondbe();
             _skull = zondbeFabric.CreateSkull();
             _walkingStrategy = zondbeFabric.CreateWalkingStrategy();
