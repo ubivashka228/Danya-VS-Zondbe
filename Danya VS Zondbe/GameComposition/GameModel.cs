@@ -7,16 +7,26 @@ namespace Danya_VS_Zondbe
 {
     public static class GameModel
     {
+        public enum DifficultLevel
+        {
+            Easy,
+            Medium,
+            Hard
+        }
+        public static DifficultLevel LastDifficultLevel;
+        
         public static int Score;
+        public static int DifficultScoreStep = 5;
         public static Player PlayerModel;
+        private static bool _bossOnMap;
+        public static bool GameOver;
         public static List<Zondbe> ZondbeList = new List<Zondbe>();
         public static HashSet<Bullet> PlayerBulletList = new HashSet<Bullet>();
-        public static readonly HashSet<Bullet> ZondbeBulletList = new HashSet<Bullet>();
+        public static HashSet<Bullet> ZondbeBulletList = new HashSet<Bullet>();
 
-        public static void CreatePlayer(Form1 form)
+        public static void CreatePlayer(Game form)
         {
-            PlayerModel = new Player(form.player,100, 15,
-                new Point(750, 380), new LaserBurning());
+            PlayerModel = new Player(form.player, new Point(750, 380), new LaserBurning());
         }
         
         private static Point GetRandomPoint()
@@ -27,8 +37,8 @@ namespace Danya_VS_Zondbe
         
         public static void CreateZondbe()
         {
-            if (ZondbeList.Count > 10) return;
-            var randomNumber = new Random().Next(1 + Score / 20, 4 + Score / 20);
+            if (ZondbeList.Count > 10 || _bossOnMap || GameOver) return;
+            var randomNumber = new Random().Next(1 + Score / DifficultScoreStep - Score / (DifficultScoreStep * 3), 4 + Score / DifficultScoreStep);
             switch (randomNumber)
             {
                 case 1:
@@ -58,34 +68,43 @@ namespace Danya_VS_Zondbe
                 case 9:
                     ZondbeList.Add(new Zondbe(new DarkKnightZondbeFabric(), GetRandomPoint()));
                     break;
+                default:
+                    ZondbeList.Add(new Zondbe(new LichZondbeFabric(), GetRandomPoint()));
+                    break;
             }
         }
         
-        public static void CheckBulletHitZondbe()
+        public static void CheckPlayerBulletHitZondbe()
         {
             foreach (var bullet in PlayerBulletList)
             {
-                foreach (var zondbe in ZondbeList.Where(zondbe => zondbe.Picture.Bounds.IntersectsWith(bullet.Picture.Bounds)))
+                foreach (var t in ZondbeList)
                 {
-                    if (bullet.Damage > zondbe.Charasteristics.Armor)
-                        zondbe.Charasteristics.Hp -= bullet.Damage - zondbe.Charasteristics.Armor;
+                    if (!t.Picture.Bounds.IntersectsWith(bullet.Picture.Bounds)) continue;
+                    if (bullet.Damage > t.Charasteristics.Armor)
+                        t.Charasteristics.Hp -= bullet.Damage - t.Charasteristics.Armor;
                     bullet.Penetration -= 1;
                     if (bullet.Penetration < 1) bullet.Remove();
-                    if (zondbe.Charasteristics.Hp >= 1) continue;
-                    zondbe.Remove();
+                    if (t.Charasteristics.Hp >= 1) continue;
+                    t.Remove();
                     Score++;
                 }
             }
+            CheckScore();
             PlayerBulletList = PlayerBulletList.Where(bullet => !bullet.Deleted).ToHashSet();
             ZondbeList = ZondbeList.Where(zondbe => zondbe.Charasteristics.Hp > 0).ToList();
         }
 
-        public static void CheckBulletHitPlayer()
+        public static void CheckZondbeBulletHitPlayer()
         {
             foreach (var bullet in ZondbeBulletList.Where(bullet => PlayerModel.Picture.Bounds.IntersectsWith(bullet.Picture.Bounds)))
             {
                 PlayerModel.Health -= bullet.Damage;
+                bullet.Deleted = true;
+                bullet.Remove();
             }
+
+            ZondbeBulletList = ZondbeBulletList.Where(bullet => !bullet.Deleted).ToHashSet();
         }
         
         public static void CheckZondbeHitPlayer(int timerTicks)
@@ -98,16 +117,67 @@ namespace Danya_VS_Zondbe
             }
         }
 
-        public static void CheckZondbeCanCast(int timerTicks, Form1 form)
+        public static void CheckZondbeCanCast(int timerTicks, Game form)
         {
+            if (GameOver) return;
             for (var i = 0; i < ZondbeList.Count; ++i)
             {
-                if ((timerTicks - ZondbeList[i].TimerTicksLastHit) * 10 >
-                    ZondbeList[i].Charasteristics.SkullReloadTime)
+                if ((timerTicks - ZondbeList[i].TimerTicksLastHit) * 10 <=
+                    ZondbeList[i].Charasteristics.SkullReloadTime) continue;
+                ZondbeList[i].Cast(form);
+                ZondbeList[i].TimerTicksLastHit = timerTicks;
+            }
+        }
+
+        private static void CheckScore()
+        {
+            if (GameOver) return;
+            
+            if (Score % DifficultScoreStep != 0) return;
+            if (Score >= 5 * DifficultScoreStep)
+            {
+                PlayerModel.Health = 100 + (Score / DifficultScoreStep - 4) * 50;
+                PlayerModel.MaxHealth = 100 + (Score / DifficultScoreStep - 4) * 50;
+            }
+            else
+                PlayerModel.Health = 100;
+            var weaponNumber = Score / DifficultScoreStep;
+            switch (weaponNumber)
+            {
+                case 1:
+                    PlayerModel.ChangeWeapon(new DesertEagle());
+                    break;
+                case 2:
+                    PlayerModel.ChangeWeapon(new Mp5());
+                    break;
+                case 3:
+                    PlayerModel.ChangeWeapon(new Ak47());
+                    break;
+                case 4:
+                    PlayerModel.ChangeWeapon(new Ak12());
+                    break;
+                case 5:
+                    PlayerModel.ChangeWeapon(new Remington());
+                    break;
+                case 6:
+                    PlayerModel.ChangeWeapon(new Gau());
+                    break;
+                case 7:
+                    PlayerModel.ChangeWeapon(new LaserMachine());
+                    break;
+                case 9:
+                    PlayerModel.ChangeWeapon(new LaserBurning());
+                    break;
+            }
+
+            if (Score >= 10 * DifficultScoreStep && !_bossOnMap)
+            {
+                _bossOnMap = true;
+                foreach (var zondbe in ZondbeList)
                 {
-                    ZondbeList[i].Cast(form);
-                    ZondbeList[i].TimerTicksLastHit = timerTicks;
+                    zondbe.Remove();
                 }
+                ZondbeList = new List<Zondbe> { new Zondbe(new JerkZondbeFabric(), new Point(20, 20)) };
             }
         }
     }

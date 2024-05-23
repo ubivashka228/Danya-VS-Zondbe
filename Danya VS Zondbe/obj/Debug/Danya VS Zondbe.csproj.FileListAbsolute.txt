@@ -16,4 +16,6 @@ C:\Users\Roman\Desktop\Game\Danya-VS-Zondbe\Danya VS Zondbe\bin\Debug\Danya_VS_Z
 C:\Users\Roman\Desktop\Game\Danya-VS-Zondbe\Danya VS Zondbe\bin\Debug\Danya_VS_Zondbe.pdb
 C:\Users\Roman\Desktop\Game\Danya-VS-Zondbe\Danya VS Zondbe\obj\Debug\Danya_VS_Zondbe.Properties.Resources.resources
 C:\Users\Roman\Desktop\Game\Danya-VS-Zondbe\Danya VS Zondbe\obj\Debug\Danya VS Zondbe.csproj.CoreCompileInputs.cache
-C:\Users\Roman\Desktop\Game\Danya-VS-Zondbe\Danya VS Zondbe\obj\Debug\Danya_VS_Zondbe.Form1.resources
+C:\Users\Roman\Desktop\Game\Danya-VS-Zondbe\Danya VS Zondbe\obj\Debug\Danya_VS_Zondbe.Menu.resources
+C:\Users\Roman\Desktop\Game\Danya-VS-Zondbe\Danya VS Zondbe\obj\Debug\Danya_VS_Zondbe.Game.resources
+C:\Users\Roman\Desktop\Game\Danya-VS-Zondbe\Danya VS Zondbe\obj\Debug\Danya_VS_Zondbe.Settings.resources

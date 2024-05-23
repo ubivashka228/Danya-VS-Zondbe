@@ -7,7 +7,7 @@ namespace Danya_VS_Zondbe
     public class Bullet
     {
         private readonly Color _color;
-        private const int Speed = 30;
+        private const int Speed = 40;
         public readonly int Damage;
         public int Penetration;
         private readonly int _width;
@@ -43,6 +43,7 @@ namespace Danya_VS_Zondbe
             }
             else
             {
+                Deleted = true;
                 Remove();
             }
         }
@@ -66,4 +67,3 @@ namespace Danya_VS_Zondbe
         }
     }
 }
-

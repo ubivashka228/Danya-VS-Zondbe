@@ -6,34 +6,38 @@ namespace Danya_VS_Zondbe
     public class Player
     {
         public readonly PictureBox Picture;
-        public int Health;
-        private readonly int _speed;
+        public int Health = 100;
+        public int MaxHealth = 100;
+        private const int Speed = 15;
         public Point Position;
         public Vector MoveDirection = new Vector(0, 0);
         public Vector ShotDirection;
-        public readonly Weapon PlayerWeapon;
-        public readonly WeaponCharasteristics WeaponInfo;
+        private Weapon _playerWeapon;
+        public WeaponCharasteristics WeaponInfo;
         
-        public Bullet Shot()
+        public Bullet Shoot()
         {
             WeaponInfo.GunAmmo--;
-            return PlayerWeapon.Shot();
+            return _playerWeapon.Shot();
         }
         
-
-        public Player(PictureBox picture, int health, int speed, Point position, Weapon weapon)
+        public Player(PictureBox picture, Point position, Weapon weapon)
         {
             Picture = picture;
-            Health = health;
-            _speed = speed;
             Position = position;
-            PlayerWeapon = weapon;
-            WeaponInfo = PlayerWeapon.CreateWeapon();
+            _playerWeapon = weapon;
+            WeaponInfo = _playerWeapon.CreateWeapon();
         }
 
+        public void ChangeWeapon(Weapon newWeapon)
+        {
+            _playerWeapon = newWeapon;
+            WeaponInfo = newWeapon.CreateWeapon();
+        }
+        
         public void Move(int mapWidth, int mapHeight)
         {
-            var shift = new Vector(_speed, 0).Rotate(MoveDirection.Angle);
+            var shift = new Vector(Speed, 0).Rotate(MoveDirection.Angle);
             var newPosition = new Point((int)shift.X + Position.X, (int)shift.Y + Position.Y);
             if (newPosition.X > 0 && newPosition.X < mapWidth && newPosition.Y > 40 && newPosition.Y < mapHeight)
                 Position = newPosition;

@@ -4,51 +4,56 @@ namespace Danya_VS_Zondbe
 {
     public abstract class ZondbeSkull
     {
-        public abstract void Cast(Point zondbePosition, Point playerPosition, Form1 form);
+        public abstract void Cast(Point zondbePosition, Point playerPosition, Game form);
     }
 
     public class NotSkulls : ZondbeSkull
     {
-        public override void Cast(Point zondbePosition, Point playerPosition, Form1 form)
+        public override void Cast(Point zondbePosition, Point playerPosition, Game form)
         {
         }
     }
         
     public class ToxicShoot : ZondbeSkull
     {
-        public override void Cast(Point zondbePosition, Point playerPosition, Form1 form)
+        public override void Cast(Point zondbePosition, Point playerPosition, Game form)
         {
             var direction = new Vector(playerPosition.X - zondbePosition.X, playerPosition.Y - zondbePosition.Y);
-            GameModel.ZondbeBulletList.Add(new Bullet(Color.Chartreuse, 4, 1, 5, 800, direction, zondbePosition));
+            GameModel.ZondbeBulletList.Add(new Bullet(Color.Chartreuse, 4, 1, 10, 800, direction, zondbePosition));
         }
     }
 
     public class NecromantRecruitment : ZondbeSkull
     {
-        public override void Cast(Point zondbePosition, Point playerPosition, Form1 form)
+        public override void Cast(Point zondbePosition, Point playerPosition, Game form)
         {
-            GameModel.ZondbeList.Add(new Zondbe(new MediumZondbeFabric(), zondbePosition));
-            GameModel.ZondbeList.Add(new Zondbe(new ToxicZondbeFabric(), zondbePosition));
+            GameModel.ZondbeList.Add(new Zondbe(new MediumZondbeFabric(), 
+                new Point(zondbePosition.X, zondbePosition.Y + 70)));
+            GameModel.ZondbeList.Add(new Zondbe(new ToxicZondbeFabric(), 
+                new Point(zondbePosition.X, zondbePosition.Y - 70)));
         }
     }
 
     public class MagicShoot : ZondbeSkull
     {
-        public override void Cast(Point zondbePosition, Point playerPosition, Form1 form)
+        public override void Cast(Point zondbePosition, Point playerPosition, Game form)
         {
             var direction = new Vector(playerPosition.X - zondbePosition.X, playerPosition.Y - zondbePosition.Y);
             
-            GameModel.ZondbeBulletList.Add(new Bullet(Color.Crimson, 25, 1, 7, 1000, direction, zondbePosition));
+            GameModel.ZondbeBulletList.Add(new Bullet(Color.Crimson, 25, 1, 10, 1000, direction, zondbePosition));
         }
     }
 
     public class BossRecruitment : ZondbeSkull
     {
-        public override void Cast(Point zondbePosition, Point playerPosition, Form1 form)
+        public override void Cast(Point zondbePosition, Point playerPosition, Game form)
         {
-            GameModel.ZondbeList.Add(new Zondbe(new DarkKnightZondbeFabric(), zondbePosition));
-            GameModel.ZondbeList.Add(new Zondbe(new LichZondbeFabric(), zondbePosition));
-            GameModel.ZondbeList.Add(new Zondbe(new SprinterZondbeFabric(), zondbePosition));
+            GameModel.ZondbeList.Add(new Zondbe(new DarkKnightZondbeFabric(), 
+                new Point(zondbePosition.X, zondbePosition.Y + 150)));
+            GameModel.ZondbeList.Add(new Zondbe(new LichZondbeFabric(), 
+                new Point(zondbePosition.X, zondbePosition.Y - 150)));
+            GameModel.ZondbeList.Add(new Zondbe(new SprinterZondbeFabric(), 
+                new Point(zondbePosition.X + 150, zondbePosition.Y)));
         }
     }
 }
