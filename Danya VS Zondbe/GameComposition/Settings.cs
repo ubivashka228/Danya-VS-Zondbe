@@ -8,10 +8,10 @@ namespace Danya_VS_Zondbe
         public Settings()
         {
             InitializeComponent();
-            SetDifficultLevel();
+            SetLastDifficultLevel();
         }
 
-        private void SetDifficultLevel()
+        private void SetLastDifficultLevel()
         {
             switch (GameModel.LastDifficultLevel)
             {
@@ -32,6 +32,7 @@ namespace Danya_VS_Zondbe
         
         private void toMenu_Click(object sender, EventArgs e)
         {
+            Dispose();
             Close();
         }
 

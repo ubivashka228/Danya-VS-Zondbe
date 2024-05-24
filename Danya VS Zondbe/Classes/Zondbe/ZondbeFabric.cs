@@ -177,7 +177,7 @@ namespace Danya_VS_Zondbe
     {
         public override ZondbeCharasteristics CreateZondbe()
         {
-            return new ZondbeCharasteristics(250000, 10, 50, 60, Properties.Resources.z10, 8000);
+            return new ZondbeCharasteristics(2500, 10, 50, 60, Properties.Resources.z10, 8000);
         }
 
         public override WalkingStrategy CreateWalkingStrategy()
@@ -220,7 +220,7 @@ namespace Danya_VS_Zondbe
 
         public void Cast(Game form)
         {
-            _skull.Cast(Position, GameModel.PlayerModel.Position, form);
+            _skull.Cast(Position, GameModel.PlayerModel.Position);
         }
 
         public void Move()

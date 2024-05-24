@@ -7,7 +7,7 @@ namespace Danya_VS_Zondbe
         private static bool _wFlag, _sFlag, _dFlag, _aFlag;
         public static void KeyIsDown(KeyEventArgs e)
         {
-            if (GameModel.GameOver) return;
+            if (GameModel.PlayerModel.Health <= 0) return;
             
             switch (e.KeyCode)
             {
@@ -50,7 +50,7 @@ namespace Danya_VS_Zondbe
         
         public static void KeyIsUp(KeyEventArgs e)
         {
-            if (GameModel.GameOver) return;
+            if (GameModel.PlayerModel.Health <= 0) return;
             
             switch (e.KeyCode)
             {
@@ -99,7 +99,7 @@ namespace Danya_VS_Zondbe
         {
             if (e.Button == MouseButtons.Left && GameModel.PlayerModel.WeaponInfo.GunAmmo != 0 && !GameModel.PlayerModel.WeaponInfo.IsReloading)
             {
-                GameModel.PlayerBulletList.Add(GameModel.PlayerModel.Shoot());
+                GameModel.PlayerBulletHashSet.Add(GameModel.PlayerModel.Shoot());
             }
         }
     }

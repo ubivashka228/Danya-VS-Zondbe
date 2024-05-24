@@ -18,7 +18,7 @@ namespace Danya_VS_Zondbe
         public Bullet Shoot()
         {
             WeaponInfo.GunAmmo--;
-            return _playerWeapon.Shot();
+            return _playerWeapon.Shoot();
         }
         
         public Player(PictureBox picture, Point position, Weapon weapon)

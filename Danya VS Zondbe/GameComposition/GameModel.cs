@@ -18,11 +18,11 @@ namespace Danya_VS_Zondbe
         public static int Score;
         public static int DifficultScoreStep = 5;
         public static Player PlayerModel;
-        private static bool _bossOnMap;
         public static bool GameOver;
+        private static bool _bossOnMap;
         public static List<Zondbe> ZondbeList = new List<Zondbe>();
-        public static HashSet<Bullet> PlayerBulletList = new HashSet<Bullet>();
-        public static HashSet<Bullet> ZondbeBulletList = new HashSet<Bullet>();
+        public static HashSet<Bullet> PlayerBulletHashSet = new HashSet<Bullet>();
+        public static HashSet<Bullet> ZondbeBulletHashSet = new HashSet<Bullet>();
 
         public static void CreatePlayer(Game form)
         {
@@ -37,7 +37,7 @@ namespace Danya_VS_Zondbe
         
         public static void CreateZondbe()
         {
-            if (ZondbeList.Count > 10 || _bossOnMap || GameOver) return;
+            if (ZondbeList.Count > 10 || _bossOnMap || PlayerModel.Health <= 0) return;
             var randomNumber = new Random().Next(1 + Score / DifficultScoreStep - Score / (DifficultScoreStep * 3), 4 + Score / DifficultScoreStep);
             switch (randomNumber)
             {
@@ -76,7 +76,7 @@ namespace Danya_VS_Zondbe
         
         public static void CheckPlayerBulletHitZondbe()
         {
-            foreach (var bullet in PlayerBulletList)
+            foreach (var bullet in PlayerBulletHashSet)
             {
                 foreach (var t in ZondbeList)
                 {
@@ -91,20 +91,22 @@ namespace Danya_VS_Zondbe
                 }
             }
             CheckScore();
-            PlayerBulletList = PlayerBulletList.Where(bullet => !bullet.Deleted).ToHashSet();
+            PlayerBulletHashSet = PlayerBulletHashSet.Where(bullet => !bullet.Deleted).ToHashSet();
             ZondbeList = ZondbeList.Where(zondbe => zondbe.Charasteristics.Hp > 0).ToList();
         }
 
         public static void CheckZondbeBulletHitPlayer()
         {
-            foreach (var bullet in ZondbeBulletList.Where(bullet => PlayerModel.Picture.Bounds.IntersectsWith(bullet.Picture.Bounds)))
+            foreach (var bullet in ZondbeBulletHashSet.Where(bullet => PlayerModel.Picture.Bounds.IntersectsWith(bullet.Picture.Bounds)))
             {
                 PlayerModel.Health -= bullet.Damage;
+                if (PlayerModel.Health <= 0)
+                    GameOver = true;
                 bullet.Deleted = true;
                 bullet.Remove();
             }
 
-            ZondbeBulletList = ZondbeBulletList.Where(bullet => !bullet.Deleted).ToHashSet();
+            ZondbeBulletHashSet = ZondbeBulletHashSet.Where(bullet => !bullet.Deleted).ToHashSet();
         }
         
         public static void CheckZondbeHitPlayer(int timerTicks)
@@ -113,25 +115,29 @@ namespace Danya_VS_Zondbe
                                                               zondbe.Picture.Bounds.IntersectsWith(PlayerModel.Picture.Bounds)))
             {
                 PlayerModel.Health -= zondbe.Charasteristics.Damage;
+                if (PlayerModel.Health <= 0)
+                    GameOver = true;
                 zondbe.TimerTicksLastHit = timerTicks;
             }
         }
 
         public static void CheckZondbeCanCast(int timerTicks, Game form)
         {
-            if (GameOver) return;
+            if (PlayerModel.Health <= 0) return;
             for (var i = 0; i < ZondbeList.Count; ++i)
             {
-                if ((timerTicks - ZondbeList[i].TimerTicksLastHit) * 10 <=
+                if ((timerTicks - ZondbeList[i].TimerTicksLastCast) * 10 <=
                     ZondbeList[i].Charasteristics.SkullReloadTime) continue;
                 ZondbeList[i].Cast(form);
-                ZondbeList[i].TimerTicksLastHit = timerTicks;
+                ZondbeList[i].TimerTicksLastCast = timerTicks;
             }
         }
 
         private static void CheckScore()
         {
             if (GameOver) return;
+            if (Score > 10 * DifficultScoreStep && ZondbeList.Count == 0)
+                GameOver = true;
             
             if (Score % DifficultScoreStep != 0) return;
             if (Score >= 5 * DifficultScoreStep)
@@ -177,7 +183,8 @@ namespace Danya_VS_Zondbe
                 {
                     zondbe.Remove();
                 }
-                ZondbeList = new List<Zondbe> { new Zondbe(new JerkZondbeFabric(), new Point(20, 20)) };
+                ZondbeList.Clear();
+                ZondbeList.Add(new Zondbe(new JerkZondbeFabric(), new Point(20, 20)));
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 
@@ -19,7 +20,6 @@ namespace Danya_VS_Zondbe
         private int _timerTicks;
         private void MainTimerEvent(object sender, ElapsedEventArgs e)
         {
-            if (GameModel.GameOver) Close();
             _timerTicks++;
             if ((_timerTicks + 1) % 4 == 0) UpdatePlayerBullets();
             if (_timerTicks % 4 == 0) UpdateZondbeBullets();
@@ -27,6 +27,11 @@ namespace Danya_VS_Zondbe
             if (_timerTicks % 10 == 0) UpdateBars();
             if ((_timerTicks + 3) % 4 == 0) UpdateZondbes();
             if (_timerTicks % 200 == 0) GameModel.CreateZondbe();
+            
+            if (GameModel.GameOver)
+            {
+                GameIsOver();
+            }
         }
 
         private void KeyIsDown(object sender, KeyEventArgs e)
@@ -63,7 +68,6 @@ namespace Danya_VS_Zondbe
                 healthBar.Value = (int)((double)GameModel.PlayerModel.Health / GameModel.PlayerModel.MaxHealth * 100);
             else
             {
-                GameModel.GameOver = true;
                 healthBar.Value = 0;
                 GameModel.PlayerModel.Picture.Image = Properties.Resources.dead;
             }
@@ -73,7 +77,7 @@ namespace Danya_VS_Zondbe
         
         private void UpdatePlayerBullets()
         {
-            foreach (var bullet in GameModel.PlayerBulletList)
+            foreach (var bullet in GameModel.PlayerBulletHashSet)
             {
                 if (!bullet.OnMap)
                 {
@@ -88,7 +92,7 @@ namespace Danya_VS_Zondbe
         
         private void UpdateZondbeBullets()
         {
-            foreach (var bullet in GameModel.ZondbeBulletList)
+            foreach (var bullet in GameModel.ZondbeBulletHashSet)
             {
                 if (!bullet.OnMap)
                 {
@@ -114,8 +118,16 @@ namespace Danya_VS_Zondbe
 
                 zondbe.Move();
             }
+
             GameModel.CheckZondbeHitPlayer(_timerTicks);
-            Console.WriteLine(GameModel.PlayerModel.Health);
+        }
+
+        private async void GameIsOver()
+        {
+            BackgroundImage = GameModel.PlayerModel.Health <= 0 ? 
+                Properties.Resources.lose_background : Properties.Resources.win_background;
+            await Task.Run(() => Thread.Sleep(1500));
+            Application.Exit();
         }
     }
 }

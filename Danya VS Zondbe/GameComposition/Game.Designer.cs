@@ -89,7 +89,7 @@ namespace Danya_VS_Zondbe
             this.GameTimer.SynchronizingObject = this;
             this.GameTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.MainTimerEvent);
             // 
-            // Form1
+            // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

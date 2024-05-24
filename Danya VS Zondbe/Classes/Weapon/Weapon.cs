@@ -7,7 +7,7 @@ namespace Danya_VS_Zondbe
     public abstract class Weapon
     {
         public abstract WeaponCharasteristics CreateWeapon();
-        public abstract Bullet Shot();
+        public abstract Bullet Shoot();
 
         public static async void Reload()
         {
@@ -25,7 +25,7 @@ namespace Danya_VS_Zondbe
             return new WeaponCharasteristics(10, 1);
         }
 
-        public override Bullet Shot()
+        public override Bullet Shoot()
         {
             return new Bullet(Color.Black, 5, 1, 10, 600, 
                 GameModel.PlayerModel.ShotDirection, GameModel.PlayerModel.Position);
@@ -39,7 +39,7 @@ namespace Danya_VS_Zondbe
             return new WeaponCharasteristics(10, 2);
         }
 
-        public override Bullet Shot()
+        public override Bullet Shoot()
         {
             return new Bullet(Color.Black, 10, 
                 1, 4, 800, GameModel.PlayerModel.ShotDirection, GameModel.PlayerModel.Position);
@@ -53,7 +53,7 @@ namespace Danya_VS_Zondbe
             return new WeaponCharasteristics(30, 2);
         }
 
-        public override Bullet Shot()
+        public override Bullet Shoot()
         {
             return new Bullet(Color.Black, 8, 1, 3, 800, 
                 GameModel.PlayerModel.ShotDirection, GameModel.PlayerModel.Position);
@@ -67,7 +67,7 @@ namespace Danya_VS_Zondbe
             return new WeaponCharasteristics(30, 2);
         }
 
-        public override Bullet Shot()
+        public override Bullet Shoot()
         {
             return new Bullet(Color.Black, 15, 2, 4, 1000, 
                 GameModel.PlayerModel.ShotDirection, GameModel.PlayerModel.Position);
@@ -81,7 +81,7 @@ namespace Danya_VS_Zondbe
             return new WeaponCharasteristics(60, 2);
         }
 
-        public override Bullet Shot()
+        public override Bullet Shoot()
         {
             return new Bullet(Color.Black, 20, 3, 4, 1100,
                 GameModel.PlayerModel.ShotDirection, GameModel.PlayerModel.Position);
@@ -95,7 +95,7 @@ namespace Danya_VS_Zondbe
             return new WeaponCharasteristics(10, 1);
         }
 
-        public override Bullet Shot()
+        public override Bullet Shoot()
         {
             
             return new Bullet(Color.Black, 70, 100, 20, 400, 
@@ -110,7 +110,7 @@ namespace Danya_VS_Zondbe
             return new WeaponCharasteristics(100, 3);
         }
 
-        public override Bullet Shot()
+        public override Bullet Shoot()
         {
             return new Bullet(Color.Black, 50, 3, 5, 1200,
                 GameModel.PlayerModel.ShotDirection, GameModel.PlayerModel.Position);
@@ -124,7 +124,7 @@ namespace Danya_VS_Zondbe
             return new WeaponCharasteristics(100, 2);
         }
 
-        public override Bullet Shot()
+        public override Bullet Shoot()
         {
             return new Bullet(Color.RoyalBlue, 150, 100, 5, 1500,
                 GameModel.PlayerModel.ShotDirection, GameModel.PlayerModel.Position);
@@ -138,7 +138,7 @@ namespace Danya_VS_Zondbe
             return new WeaponCharasteristics(200, 2);
         }
 
-        public override Bullet Shot()
+        public override Bullet Shoot()
         {
             return new Bullet(Color.RoyalBlue, 200, 100, 5, 1800,
                 GameModel.PlayerModel.ShotDirection, GameModel.PlayerModel.Position);

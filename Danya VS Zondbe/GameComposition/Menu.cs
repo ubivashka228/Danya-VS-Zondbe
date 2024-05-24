@@ -12,14 +12,14 @@ namespace Danya_VS_Zondbe
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            var frm = new Game();
-            frm.Show();
+            var game = new Game();
+            game.Show();
         }
 
         private void settingsButton_Click(object sender, EventArgs e)
         {
-            var frm = new Settings();
-            frm.Show();
+            var settings = new Settings();
+            settings.Show();
         }
         
         private void exitButton_Click(object sender, EventArgs e)
