@@ -26,7 +26,7 @@ namespace Danya_VS_Zondbe
 
         public static void CreatePlayer(Game form)
         {
-            PlayerModel = new Player(form.player, new Point(750, 380), new LaserBurning());
+            PlayerModel = new Player(form.player, new Point(750, 380), new Beretta());
         }
         
         private static Point GetRandomPoint()
